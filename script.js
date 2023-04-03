@@ -20,8 +20,9 @@ let currentNumber = "0";
 const inputNumber = (number) => {
   if (currentNumber === "0") {
     currentNumber = number;
+  } else {
+    currentNumber += number;
   }
-  currentNumber += number;
 };
 
 const operators = document.querySelectorAll(".operator");
@@ -103,6 +104,11 @@ percent.addEventListener("click", (event) => {
 });
 
 const percentage = () => {
-  currentNumber /= 100;
-  updateScreen(currentNumber);
+  if (prevNumber) {
+    currentNumber = prevNumber * (currentNumber / 100);
+    updateScreen(currentNumber);
+  } else {
+    currentNumber /= 100;
+    updateScreen(currentNumber);
+  }
 };
